@@ -21,6 +21,14 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // switch to palyer Camera
+        if (Camera.main != null)
+        {
+            Camera.main.enabled = false;
+        }
+
+        camera.enabled = true;
     }
 
     // Update is called once per frame
