@@ -13,6 +13,7 @@ public class SpawnController : Singleton<SpawnController>
     private GameObject emptyGameObject;
     private GameObject chunkSpawnedContainer;
     private SpawnGridPlatformXZ spawnGridXZ;
+    private List<Vector3> gridBaseXZ;
 
     private Dictionary<BlockType, ObjectPool<Block>> blocksPool;
 
@@ -39,7 +40,18 @@ public class SpawnController : Singleton<SpawnController>
 #if UNITY_EDITOR
         chunkSpawnedContainer.name = nameof(chunkSpawnedContainer);
 #endif
+        InitBlocksPool();
+        OnSpawnChunk();
 
+        gridBaseXZ = chunkSpawnedContainer.GetComponentsInChildren<Block>()
+            .GroupBy(x => x.transform.position.y)
+            .First()
+            .Select(x => x.transform.position)
+            .ToList();
+    }
+
+    private void InitBlocksPool()
+    {
         blocksToSpawn = blockTemplates.ToDictionary(x => x.BlockType, x => x);
 
         blocksPool = new();
@@ -58,19 +70,6 @@ public class SpawnController : Singleton<SpawnController>
                     b.BrokenCallback = null;
                 });
         }
-
-        OnSpawnChunk();
-    }
-
-    // Use this for initialization
-    private void Start()
-    {
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
     }
 
     /// <summary>
@@ -78,7 +77,7 @@ public class SpawnController : Singleton<SpawnController>
     /// </summary>
     /// <param name="spawnPos"></param>
     /// <param name="blockType"></param>
-    public void OnSpawnBlock(Vector3 spawnPos, BlockType blockType = BlockType.None)
+    public void OnSpawnBlock(Vector3 spawnPos, BlockType blockType = BlockType.None, bool? isUseGravity = null)
     {
         if (blockType == BlockType.None)
         {
@@ -86,6 +85,7 @@ public class SpawnController : Singleton<SpawnController>
         }
 
         var block = blocksPool[blockType].Get();
+        block.Rigid.useGravity = isUseGravity ?? Random.value > 0.5f;
         block.transform.position = spawnPos;
     }
 
@@ -93,9 +93,11 @@ public class SpawnController : Singleton<SpawnController>
     /// for random position
     /// </summary>
     /// <param name="blockType"></param>
-    public void OnSpawnBlock(BlockType blockType)
+    public void OnSpawnBlockRandomPosition()
     {
-        
+        var spawnPos = gridBaseXZ[Random.Range(0, gridBaseXZ.Count)];
+        spawnPos.y += 6f;
+        OnSpawnBlock(spawnPos, CurrentBlockType);
     }
 
     public void OnBlockBroken(Block block)

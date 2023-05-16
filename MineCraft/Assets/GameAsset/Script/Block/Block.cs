@@ -8,6 +8,8 @@ public abstract class Block : MonoBehaviour
     [SerializeField]
     protected BlockType type = BlockType.None;
     [SerializeField]
+    protected Rigidbody rigid;
+    [SerializeField]
     protected float breakTime = 1.0f;
     [SerializeField]
     [Tooltip("VFX must be set play on Awake")]
@@ -20,11 +22,22 @@ public abstract class Block : MonoBehaviour
     public Action<Block> BrokenCallback { get; set; } = null;
 
     public BlockType BlockType => type;
+    public Rigidbody Rigid => rigid;
 
     #region Unity method
-    protected virtual void Awake()
+ 
+    private void Awake()
     {
         OnInit();
+
+        if (rigid == null)
+        {
+            rigid = gameObject.GetComponent<Rigidbody>();
+            if (rigid == null)
+            {
+                rigid = gameObject.AddComponent<Rigidbody>();
+            }
+        }
     }
 
     protected virtual void OnEnable()
@@ -37,7 +50,7 @@ public abstract class Block : MonoBehaviour
 
     protected void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag(TagsDefined.TAG_WEAPON))
+        if (collision.collider.CompareTag(TagsDefined.TAG_BLOCK))
         {
             //breakTween = DOVirtual.DelayedCall(breakTime, () => BrokenCallback?.Invoke(this));
         }
@@ -45,7 +58,7 @@ public abstract class Block : MonoBehaviour
 
     protected void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag(TagsDefined.TAG_WEAPON))
+        if (collision.collider.CompareTag(TagsDefined.TAG_BLOCK))
         {
             //breakTween.Kill();
         }
