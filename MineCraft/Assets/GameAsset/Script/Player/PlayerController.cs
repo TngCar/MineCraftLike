@@ -5,14 +5,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private CharacterController characterController;
-    [SerializeField]
-    private PlayerInputManager inputManager;
 
     [SerializeField]
     private Camera camera;
 
     public CharacterController CharacterController => characterController;
-    public PlayerInputManager InputManager => inputManager;
+    public InputManager InputManager { get; set; }
  
     public Camera Camera => camera;
 

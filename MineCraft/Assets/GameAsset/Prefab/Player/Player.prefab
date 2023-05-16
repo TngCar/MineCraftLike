@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6066878295795466182}
   - component: {fileID: 6066878295795466183}
   - component: {fileID: 6066878295795466180}
-  - component: {fileID: 6066878295795466178}
+  - component: {fileID: 6066878297289523727}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -52,7 +52,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6066878295795466183
@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 6066878295795466182}
-  inputManager: {fileID: 6066878295795466178}
   camera: {fileID: 6066878297580263364}
 --- !u!114 &6066878295795466180
 MonoBehaviour:
@@ -86,8 +85,9 @@ MonoBehaviour:
   lookRotateSpeed: 2
   lookRotateLimitTopAngle: 45
   lookRotateLimitBottomAngle: 75
-  jumpSpeed: 8
---- !u!114 &6066878295795466178
+  jumpSpeed: 5
+  moveSpeed: 2
+--- !u!114 &6066878297289523727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6066878295795466181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82958ee856ee4d54ebb4c5314500032b, type: 3}
+  m_Script: {fileID: 11500000, guid: dee79e0fe7f43a74db7c587dc802fce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6066878295972659625
@@ -224,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 6066878296220892560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.5}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6066878297580263367}

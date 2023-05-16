@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SplashLoading : MonoBehaviour
+public class SplashLoadingController : MonoBehaviour
 {
     [SerializeField]
     private Transform loadingIcon;
@@ -34,6 +34,7 @@ public class SplashLoading : MonoBehaviour
 
     private IEnumerator LoadScene()
     {
+        // goto game play scene when it is ready
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(SceneName.GAMEPLAY_SCENE);
         asyncOperation.allowSceneActivation = false;
 

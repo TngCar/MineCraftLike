@@ -361,6 +361,78 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 523941009120333915}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1314874596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7288738863530374545, guid: f9f34107199c1e748b287f96a57f7227,
+    type: 3}
+  m_PrefabInstance: {fileID: 523941009120333915}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcad016d2ca685a45bff9180235ee15a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1348342149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1348342152}
+  - component: {fileID: 1348342151}
+  - component: {fileID: 1348342150}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1348342150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348342149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56c643fe3de9814896d7e5628309c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1348342151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348342149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e00db5d13c2fe4194fd09de0c2663c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputManager: {fileID: 1348342150}
+  player: {fileID: 1675173473}
+  blockSelectUIController: {fileID: 1314874596}
+--- !u!4 &1348342152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348342149}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412295007
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +531,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1675173473 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6066878295795466183, guid: 40f798d80f1493e46823a6ea88a7dc6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6066878297289523725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e071f09a4c9784fb475ce7deab7362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1757988287
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +594,7 @@ MonoBehaviour:
   chunkConfig:
     chunkTemplate: {fileID: 1232524873574655397, guid: 1999e9ea0733baa4c958b2031c3c99ce,
       type: 3}
-    dimension: {x: 3, y: 3}
+    dimension: {x: 4, y: 4}
 --- !u!1 &1877862725
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +755,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112258619}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2112258622
 Camera:
   m_ObjectHideFlags: 0
@@ -840,7 +924,7 @@ PrefabInstance:
     - target: {fileID: 523941008212227256, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 523941008212227256, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
@@ -885,7 +969,7 @@ PrefabInstance:
     - target: {fileID: 523941008212227256, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -70
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 523941008212227256, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}

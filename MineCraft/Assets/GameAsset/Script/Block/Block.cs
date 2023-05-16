@@ -11,15 +11,15 @@ public abstract class Block : MonoBehaviour
     protected float breakTime = 1.0f;
     [SerializeField]
     [Tooltip("VFX must be set play on Awake")]
-    private VisualEffect brokenVfx;
+    private VisualEffect breakVfx;
     [SerializeField]
-    private float brokenVfxPlayTime = 1.5f;
+    private float breakVfxPlayTime = 1.5f;
 
-    [HideInInspector]
-    public Action<Block> BrokenCallback = null;
+    protected Coroutine breakCoroutine;
 
-    protected Coroutine BrockenCoroutine;
-    public virtual BlockType BlockType => type;
+    public Action<Block> BrokenCallback { get; set; } = null;
+
+    public BlockType BlockType => type;
 
     #region Unity method
     protected virtual void Awake()
@@ -29,9 +29,9 @@ public abstract class Block : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        if (brokenVfx)
+        if (breakVfx)
         {
-            brokenVfx.gameObject.SetActive(false);
+            breakVfx.gameObject.SetActive(false);
         }
     }
 
@@ -61,27 +61,37 @@ public abstract class Block : MonoBehaviour
     protected abstract void OnInit();
 
     #endregion // abstract method
-    public virtual void OnBroken()
+    public virtual void OnBreak()
     {
-        if (brokenVfx)
+        if (breakVfx)
         {
-            brokenVfx.gameObject.SetActive(true);
+            breakVfx.gameObject.SetActive(true);
         }
-        StartCoroutine(BrokenDelay());
+
+        StartCoroutine(BreakDelay());
     }
 
-    protected IEnumerator BrokenDelay()
+    protected IEnumerator BreakDelay()
     {
-        yield return new WaitForSeconds(brokenVfxPlayTime);
+        yield return new WaitForSeconds(breakVfxPlayTime);
 
-        if (brokenVfx)
+        if (breakVfx)
         {
-            brokenVfx.Stop();
+            breakVfx.Stop();
         }
-        SpawnController.Instance.OnBlockBroken(this);
-
+        //SpawnController.Instance.OnBlockBroken(this);
+        BrokenCallback?.Invoke(this);
     }
 
+    public void OnCancleBreakProgress()
+    {
+        if (breakCoroutine != null)
+        {
+            Debug.Log("Cancle BreakProgress");
+            StopCoroutine(breakCoroutine);
+            breakCoroutine = null;
+        }
+    }
 }
 
 

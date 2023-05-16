@@ -22,40 +22,6 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-    }
-
-    private void OnLeftMouseClick()
-    {
-        if (player.InputManager.LeftMouseClick)
-        {
-        }
-    }
-
-    private void OnRightMouseClick()
-    {
-        if (player.InputManager.RightMouseClick)
-        {
-        }
-    }
-
-    private void OnKey1Down()
-    {
-        if (player.InputManager.Key1Down)
-        {
-        }
-    }
-
-    private void OnKey2Down()
-    {
-        if (player.InputManager.Key2Down)
-        {
-        }
-    }
-
-    private void OnKey3Down()
-    {
-        if (player.InputManager.Key3Down)
-        {
-        }
+        
     }
 }
