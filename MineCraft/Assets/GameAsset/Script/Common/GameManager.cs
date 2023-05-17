@@ -7,8 +7,13 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private PlayerController player;
     [SerializeField]
-    private BlockSelectUIController blockSelectUIController;
+    private SpawnController spawnController;
+    [SerializeField]
+    private GamePlayUIController blockSelectUIController;
+    [SerializeField]
+    private Vector3 worldBlockDimension = Vector3.one;
 
+    public Vector3 WorldBlockDimension => worldBlockDimension;
     public InputManager InputManager => inputManager;
 
     protected override void OnInit()
@@ -25,7 +30,12 @@ public class GameManager : Singleton<GameManager>
 
         if (blockSelectUIController == null)
         {
-            blockSelectUIController = gameObject.GetComponent<BlockSelectUIController>();
+            blockSelectUIController = gameObject.GetComponent<GamePlayUIController>();
+        }
+
+        if (spawnController == null)
+        {
+            spawnController = FindAnyObjectByType<SpawnController>();
         }
 
         player.InputManager = inputManager;
@@ -58,10 +68,9 @@ public class GameManager : Singleton<GameManager>
         if (inputManager.RightMouseClick)
         {
             Debug.Log("PlayerBehaviour OnRightMouseClick");
-            SpawnController.Instance.OnSpawnBlockRandomPosition();
+            spawnController.OnSpawnBlockRandomPosition();
         }
     }
-
 
 
     // grass
@@ -70,7 +79,7 @@ public class GameManager : Singleton<GameManager>
         if (inputManager.Key1Up)
         {
             Debug.Log("PlayerBehaviour OnKey1Up");
-            SpawnController.Instance.CurrentBlockType = BlockType.Grass;
+            spawnController.CurrentBlockType = BlockType.Grass;
             blockSelectUIController.OnBlockSelectChange(BlockType.Grass);
         }
     }
@@ -81,7 +90,7 @@ public class GameManager : Singleton<GameManager>
         if (inputManager.Key2Up)
         {
             Debug.Log("PlayerBehaviour OnKey2Up");
-            SpawnController.Instance.CurrentBlockType = BlockType.Sand;
+            spawnController.CurrentBlockType = BlockType.Sand;
             blockSelectUIController.OnBlockSelectChange(BlockType.Sand);
         }
     }
@@ -92,7 +101,7 @@ public class GameManager : Singleton<GameManager>
         if (inputManager.Key3Up)
         {
             Debug.Log("PlayerBehaviour OnKey3Up");
-            SpawnController.Instance.CurrentBlockType = BlockType.Stone;
+            spawnController.CurrentBlockType = BlockType.Stone;
             blockSelectUIController.OnBlockSelectChange(BlockType.Stone);
         }
     }
@@ -103,7 +112,7 @@ public class GameManager : Singleton<GameManager>
         if (inputManager.Key4Up)
         {
             Debug.Log("PlayerBehaviour OnKey4Down");
-            SpawnController.Instance.CurrentBlockType = BlockType.None;
+            spawnController.CurrentBlockType = BlockType.None;
             blockSelectUIController.OnBlockSelectChange(BlockType.None);
         }
     }

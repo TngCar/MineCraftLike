@@ -8,10 +8,16 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Camera camera;
+    [SerializeField]
+    private float attackRange = 2f;
+    [SerializeField]
+    private float detectMaxRange = 200f;
 
     public CharacterController CharacterController => characterController;
     public InputManager InputManager { get; set; }
- 
+    public float AttackRange => attackRange;
+    public float DetectMaxRange { get => detectMaxRange; set => detectMaxRange = value; }
+
     public Camera Camera => camera;
 
     // Use this for initialization

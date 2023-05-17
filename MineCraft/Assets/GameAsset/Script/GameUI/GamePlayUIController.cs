@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-
-public class BlockSelectUIController : MonoBehaviour
+public class GamePlayUIController : MonoBehaviour
 {
     [SerializeField]
     private BlockSelectUI[] blockItems;

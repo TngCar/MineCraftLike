@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -417,7 +417,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1348342150}
   player: {fileID: 1675173473}
+  spawnController: {fileID: 1757988289}
   blockSelectUIController: {fileID: 1314874596}
+  worldBlockDimension: {x: 1, y: 1, z: 1}
 --- !u!4 &1348342152
 Transform:
   m_ObjectHideFlags: 0
@@ -451,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1412295008
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -989,7 +991,7 @@ PrefabInstance:
     - target: {fileID: 523941008212227257, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
       propertyPath: m_Name
-      value: BlockSelectUI
+      value: GamePlayUI
       objectReference: {fileID: 0}
     - target: {fileID: 523941008503748855, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}

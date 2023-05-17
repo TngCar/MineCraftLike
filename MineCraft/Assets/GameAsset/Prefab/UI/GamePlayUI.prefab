@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 523941008212227263}
   - component: {fileID: 7288738863530374545}
   m_Layer: 5
-  m_Name: BlockSelectUI
+  m_Name: GamePlayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
