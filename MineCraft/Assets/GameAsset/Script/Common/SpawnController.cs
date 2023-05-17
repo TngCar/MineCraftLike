@@ -47,14 +47,15 @@ public class SpawnController : MonoBehaviour
         InitBlockBreakVfxPool();
         OnSpawnChunk();
 
-        var gridBaseXZ = chunkSpawnedContainer.GetComponentsInChildren<Block>()
-            .GroupBy(x => x.transform.position.y)
-            .First()
-            .Select(x => x.transform.position);
+        var gridBaseXZGroupY = chunkSpawnedContainer.GetComponentsInChildren<Block>()
+            .Select(x => x.transform.position)
+            .GroupBy(p => p.y)
+            .OrderByDescending(y => y.Key);
 
-        if (gridBaseXZ.Any())
+        if (gridBaseXZGroupY.Any())
         {
-            spawnGridXZ = new(gridBaseXZ, WorldBlockDimesion);
+            var gridBaseXZ = gridBaseXZGroupY.First();
+            spawnGridXZ = new(gridBaseXZ, WorldBlockDimesion, gridBaseXZ.First().y);
         }
         else
         {
@@ -158,7 +159,10 @@ public class SpawnController : MonoBehaviour
         var fixedZ = spawnGridXZ.BeginPosition.z
             + WorldBlockDimesion.z * Mathf.CeilToInt((spawnZ - spawnGridXZ.BeginPosition.z) / WorldBlockDimesion.z);
 
-        OnSpawnBlock(new Vector3(fixedX, 6, fixedZ), CurrentBlockType);
+        var y = Random.Range(spawnGridXZ.YTopRoof,
+            spawnGridXZ.YTopRoof + 0.5f * Vector2.Distance(new Vector2(spawnGridXZ.BeginPosition.x, spawnGridXZ.BeginPosition.z), new Vector2(spawnGridXZ.EndPosition.x, spawnGridXZ.EndPosition.z)));
+
+        OnSpawnBlock(new Vector3(fixedX, y, fixedZ), CurrentBlockType);
     }
 
     public void OnBreakBlock(Block block)
@@ -266,8 +270,10 @@ public class SpawnGridPlatformXZ
     public (float x, float z) EndPosition { get; set; } = (0, 0);
     public (float x, float z) CellSize { get; set; } = (1, 1);
 
+    public float YTopRoof { get; set; } = 0;
+
     public SpawnGridPlatformXZ() { }
-    public SpawnGridPlatformXZ(IEnumerable<Vector3> dataIput, Vector3 cellDimestion)
+    public SpawnGridPlatformXZ(IEnumerable<Vector3> dataIput, Vector3 cellDimestion, float top)
     {
         if (dataIput == null || !dataIput.Any())
             return;
@@ -307,6 +313,7 @@ public class SpawnGridPlatformXZ
         BeginPosition = (minPos.x, minPos.z);
         EndPosition = (maxPos.x, maxPos.z);
         CellSize = (cellDimestion.x, cellDimestion.z);
+        YTopRoof = top;
     }
 }
 

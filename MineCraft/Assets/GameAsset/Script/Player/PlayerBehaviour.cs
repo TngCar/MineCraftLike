@@ -16,19 +16,14 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-
-    // Use this for initialization
-    private void Start()
-    {
-
-    }
-
     // Update is called once per frame
     private void Update()
     {
 #if UNITY_EDITOR
         // draw red line in Scene window
         Debug.DrawRay(player.Camera.transform.position, player.Camera.transform.forward * player.AttackRange, Color.red, 0.5f);
+        // max range
+        Debug.DrawRay(player.Camera.transform.position, player.Camera.transform.forward * player.DetectMaxRange, Color.green, 0.5f);
 #endif
 
         if (player.InputManager.LeftMouseRelease)
