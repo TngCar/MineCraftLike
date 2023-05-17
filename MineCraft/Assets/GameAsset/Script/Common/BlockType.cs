@@ -3,9 +3,9 @@
 public enum BlockType
 {
     None,
+    Grass,
     Sand,
     Stone,
-    Grass,
     // add new Item above this line
 
     // Hide on Inspector

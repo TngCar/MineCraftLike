@@ -10,12 +10,7 @@ public abstract class Block : MonoBehaviour
 	[SerializeField]
 	protected Rigidbody rigid;
 	[SerializeField]
-	protected Collider collider;
-	[SerializeField]
 	protected float breakTime = 1.0f;
-	[SerializeField]
-	[Tooltip("VFX must be set play on Awake")]
-	private VisualEffect breakVfx;
 	[SerializeField]
 	private float breakVfxPlayTime = 1.5f;
 
@@ -39,24 +34,6 @@ public abstract class Block : MonoBehaviour
 			{
 				rigid = gameObject.AddComponent<Rigidbody>();
 			}
-		}
-
-		if (collider == null)
-		{
-			collider = gameObject.GetComponent<Collider>();
-		}
-	}
-
-	protected virtual void OnEnable()
-	{
-		if (collider)
-		{
-			collider.enabled = true;
-		}
-
-		if (breakVfx)
-		{
-			breakVfx.gameObject.SetActive(false);
 		}
 	}
 
@@ -86,28 +63,9 @@ public abstract class Block : MonoBehaviour
 	protected abstract void OnInit();
 
 	#endregion // abstract method
+
 	public virtual void OnBreak()
 	{
-		// collider disable during vfx playing
-		// for playe not detect again;
-		// will enable it when block spawn by pool
-		collider.enabled = false;
-		if (breakVfx)
-		{
-			breakVfx.gameObject.SetActive(true);
-		}
-
-		StartCoroutine(BreakDelay());
-	}
-
-	protected IEnumerator BreakDelay()
-	{
-		yield return new WaitForSeconds(breakVfxPlayTime);
-
-		if (breakVfx)
-		{
-			breakVfx.Stop();
-		}
 		BrokenCallback?.Invoke(this);
 	}
 

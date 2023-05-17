@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f637d1cb0b140ee479404126c1b6b7cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockType: 3
+  blockType: 1
   hilightImage: {fileID: 523941008169035211}
 --- !u!1 &523941008212227257
 GameObject:
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f637d1cb0b140ee479404126c1b6b7cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockType: 1
+  blockType: 2
   hilightImage: {fileID: 523941008503748854}
 --- !u!1 &523941008865266304
 GameObject:
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f637d1cb0b140ee479404126c1b6b7cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockType: 2
+  blockType: 3
   hilightImage: {fileID: 523941009199454779}
 --- !u!1 &8206952242319704018
 GameObject:

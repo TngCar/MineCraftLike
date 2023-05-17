@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e213ec6ce4a3246baeed0c26f7f6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerTypes: 03000000010000000200000002000000
+  layerTypes: 01000000020000000300000003000000
   layerDimension: {x: 4, y: 1, z: 4}
   blockDimension: {x: 1, y: 1, z: 1}
