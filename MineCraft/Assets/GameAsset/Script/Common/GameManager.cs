@@ -116,5 +116,10 @@ public class GameManager : Singleton<GameManager>
             blockSelectUIController.OnBlockSelectChange(BlockType.None);
         }
     }
+
+    public void OnBreakBlock(Block block)
+    {
+        spawnController.OnBreakBlock(block);
+    }
     #endregion //Input Handle
 }

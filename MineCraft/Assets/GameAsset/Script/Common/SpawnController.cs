@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -26,8 +27,6 @@ public class SpawnController : MonoBehaviour
     private Dictionary<BlockType, Block> blocksToSpawn;
     private Dictionary<BlockType, VisualEffect> blockBreakVfxToSpawn;
     public BlockType CurrentBlockType { get; set; } = BlockType.None;
-    public List<Block> BlocksSpawned { get; private set; }
-
     public Vector3 WorldBlockDimesion { get; set; } = Vector3.one;
 
     private void Awake()
@@ -39,13 +38,12 @@ public class SpawnController : MonoBehaviour
     {
 
         WorldBlockDimesion = GameManager.Instance.WorldBlockDimension;
-        BlocksSpawned = new();
         emptyGameObject = new GameObject();
         chunkSpawnedContainer = new GameObject();
 #if UNITY_EDITOR
         chunkSpawnedContainer.name = nameof(chunkSpawnedContainer);
 #endif
-        InitBlocksPool();
+        InitBlockPools();
         InitBlockBreakVfxPool();
         OnSpawnChunk();
 
@@ -91,7 +89,7 @@ public class SpawnController : MonoBehaviour
         }
     }
 
-    private void InitBlocksPool()
+    private void InitBlockPools()
     {
 #if UNITY_EDITOR
         if (blockTemplates.Length <= 0 ||
@@ -112,14 +110,10 @@ public class SpawnController : MonoBehaviour
                 , b =>
                 {
                     b.gameObject.SetActive(true);
-                    b.BrokenCallback = OnBlockBroken;
                 }
                 , b =>
                 {
                     b.gameObject.SetActive(false);
-                    b.BrokenCallback = null;
-
-                   
                 });
         }
     }
@@ -167,12 +161,19 @@ public class SpawnController : MonoBehaviour
         OnSpawnBlock(new Vector3(fixedX, 6, fixedZ), CurrentBlockType);
     }
 
-    public void OnBlockBroken(Block block)
+    public void OnBreakBlock(Block block)
     {
         // release pool instead of Destroy Object
         blockPools[block.BlockType].Release(block);
         var vfx = blockBreakVfxPools[block.BlockType].Get();
         vfx.transform.position = block.transform.position;
+        StartCoroutine(vfxPlayTime());
+
+        IEnumerator vfxPlayTime()
+        {
+            yield return new WaitForSeconds(1.5f);
+            blockBreakVfxPools[block.BlockType].Release(vfx);
+        }
     }
 
     private void OnSpawnChunk()
@@ -251,8 +252,6 @@ public class SpawnController : MonoBehaviour
                 , block.transform.localPosition.y
                 , block.transform.localPosition.z + offsetZ
             );
-
-            BlocksSpawned.Add(block);
         }
         else
         {

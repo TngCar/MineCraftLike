@@ -1,8 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GamePlayUIController : MonoBehaviour
 {
+    [SerializeField]
+    private Image attackImage;
+
     [SerializeField]
     private BlockSelectUI[] blockItems;
     [SerializeField]
@@ -11,9 +17,21 @@ public class GamePlayUIController : MonoBehaviour
     private Color unselectColor;
 
     private BlockType currentType = BlockType.None;
+
+    public static Action<float> attackHoldTime;
+
+    private float fillTime = 0;
+    private float timer;
     // Use this for initialization
     void Start()
     {
+        attackImage.fillAmount = 0;
+        attackHoldTime = (t) =>
+        {
+            fillTime = t;
+            timer = fillTime;
+        };
+
 #if UNITY_EDITOR
         // check duplicate config
         if (blockItems.Length <= 0 ||
@@ -64,6 +82,18 @@ public class GamePlayUIController : MonoBehaviour
         {
             Debug.LogError($"Can't select block {blockType}");
         }
+    }
 
+    private void Update()
+    {
+        if (fillTime == 0 || timer <= 0)
+        {
+            attackImage.fillAmount = 0;
+        }
+        else
+        {
+            timer -= Time.deltaTime;
+            attackImage.fillAmount = timer / fillTime;
+        }
     }
 }

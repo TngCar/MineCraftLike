@@ -11,15 +11,12 @@ public abstract class Block : MonoBehaviour
 	protected Rigidbody rigid;
 	[SerializeField]
 	protected float breakTime = 1.0f;
-	[SerializeField]
-	private float breakVfxPlayTime = 1.5f;
 
 	protected Coroutine breakProgressCoroutine;
 
-	public Action<Block> BrokenCallback { get; set; } = null;
-
 	public BlockType BlockType => type;
 	public Rigidbody Rigid => rigid;
+	public float BreakTime => breakTime;
 
 	#region Unity method
 
@@ -37,21 +34,6 @@ public abstract class Block : MonoBehaviour
 		}
 	}
 
-	//protected void OnCollisionEnter(Collision collision)
-	//{
-	//    if (collision.collider.CompareTag(TagsDefined.TAG_BLOCK))
-	//    {
-	//        //breakTween = DOVirtual.DelayedCall(breakTime, () => BrokenCallback?.Invoke(this));
-	//    }
-	//}
-
-	//protected void OnCollisionExit(Collision collision)
-	//{
-	//    if (collision.collider.CompareTag(TagsDefined.TAG_BLOCK))
-	//    {
-	//        //breakTween.Kill();
-	//    }
-	//}
 	protected virtual void OnDisable()
 	{
 		StopAllCoroutines();
@@ -66,7 +48,7 @@ public abstract class Block : MonoBehaviour
 
 	public virtual void OnBreak()
 	{
-		BrokenCallback?.Invoke(this);
+		GameManager.Instance.OnBreakBlock(this);
 	}
 
 	public void OnCancleBreakProgress()
