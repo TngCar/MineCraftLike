@@ -899,6 +899,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1877862729}
     m_Modifications:
+    - target: {fileID: 9206696328714428416, guid: f9f34107199c1e748b287f96a57f7227,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206696328714428479, guid: f9f34107199c1e748b287f96a57f7227,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206696328714428479, guid: f9f34107199c1e748b287f96a57f7227,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206696328714428479, guid: f9f34107199c1e748b287f96a57f7227,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9206696329155096895, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -997,7 +1017,7 @@ PrefabInstance:
     - target: {fileID: 9206696329654084793, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206696329654084793, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
@@ -1007,7 +1027,7 @@ PrefabInstance:
     - target: {fileID: 9206696329654084793, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206696329654084793, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
@@ -1052,7 +1072,7 @@ PrefabInstance:
     - target: {fileID: 9206696329654084793, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206696329654084793, guid: f9f34107199c1e748b287f96a57f7227,
         type: 3}
