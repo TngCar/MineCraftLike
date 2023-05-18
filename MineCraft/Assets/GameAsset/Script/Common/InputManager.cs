@@ -16,10 +16,10 @@ public class InputManager : MonoBehaviour
 
     public bool Key3Up => Input.GetKeyUp(KeyCode.Alpha3);
 
-    // W, S / arrow up , arrow down
+    // W, S
     public float Vertical => Input.GetAxisRaw("Vertical");
 
-    // A, D / <- , ->
+    // A, D
     public float Horizontal => Input.GetAxisRaw("Horizontal");
 
     public float MouseY => Input.GetAxis("Mouse Y");

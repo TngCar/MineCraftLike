@@ -97,7 +97,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.99, y: 1, z: 0.99}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1796052934677845080
 MonoBehaviour:
@@ -114,7 +114,6 @@ MonoBehaviour:
   type: 1
   rigid: {fileID: -6593787890829728717}
   breakTime: 1
-  breakVfxPlayTime: 1.5
 --- !u!54 &-6593787890829728717
 Rigidbody:
   m_ObjectHideFlags: 0

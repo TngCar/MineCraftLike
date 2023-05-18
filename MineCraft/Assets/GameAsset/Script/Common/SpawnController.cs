@@ -159,10 +159,10 @@ public class SpawnController : MonoBehaviour
         var fixedZ = spawnGridXZ.BeginPosition.z
             + WorldBlockDimesion.z * Mathf.CeilToInt((spawnZ - spawnGridXZ.BeginPosition.z) / WorldBlockDimesion.z);
 
-        var y = Random.Range(spawnGridXZ.YTopRoof,
-            spawnGridXZ.YTopRoof + 0.5f * Vector2.Distance(new Vector2(spawnGridXZ.BeginPosition.x, spawnGridXZ.BeginPosition.z), new Vector2(spawnGridXZ.EndPosition.x, spawnGridXZ.EndPosition.z)));
+        var minPosY = spawnGridXZ.YTopRoof + WorldBlockDimesion.y;
+        var maxPosY = minPosY + 0.5f * Vector2.Distance(spawnGridXZ.BeginPositionXZ, spawnGridXZ.EndPositionXZ);
 
-        OnSpawnBlock(new Vector3(fixedX, y, fixedZ), CurrentBlockType);
+        OnSpawnBlock(new Vector3(fixedX, Random.Range(minPosY, maxPosY), fixedZ), CurrentBlockType);
     }
 
     public void OnBreakBlock(Block block)
@@ -269,10 +269,13 @@ public class SpawnGridPlatformXZ
     public (float x, float z) BeginPosition { get; set; } = (0, 0);
     public (float x, float z) EndPosition { get; set; } = (0, 0);
     public (float x, float z) CellSize { get; set; } = (1, 1);
-
     public float YTopRoof { get; set; } = 0;
 
+    public Vector2 BeginPositionXZ => new Vector2(BeginPosition.x, BeginPosition.z);
+    public Vector2 EndPositionXZ => new Vector2(EndPosition.x, EndPosition.z);
+
     public SpawnGridPlatformXZ() { }
+
     public SpawnGridPlatformXZ(IEnumerable<Vector3> dataIput, Vector3 cellDimestion, float top)
     {
         if (dataIput == null || !dataIput.Any())

@@ -2,7 +2,7 @@
 - open Scene SplashScene.unity  at  .\MineCraft\Assets\GameAsset\Scenes and play
 
 
-ingame:  WASD (can use Arrow key) to move  and Space key to jump
+ingame: WASD to move  and Space key to jump
 1, 2 ,3 , 4  to select block to spawn:
     1: grass
     2 : sand
@@ -10,7 +10,8 @@ ingame:  WASD (can use Arrow key) to move  and Space key to jump
     4: random (1,2,3)
 
 - click right mouse to spawn select block (random place)
-
+     - block spawned can be drop or no (random)
+ 
 - click and hold left click ultil count down end to break a block
     if too close: you can target a block and break it via crosshair
     if don't have any block target, will break random a block
