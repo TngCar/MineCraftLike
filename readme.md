@@ -1,5 +1,5 @@
 - the game develop on Unity version 2021.1.3.21f1. Please install it.
-- open Scene SplashScene.unity  at  .\MineCraft\Assets\GameAsset\Scenes and play
+- open Scene SplashScene.unity  at  ./MineCraft/Assets/GameAsset/Scenes and play
 
 
 ingame: WASD to move  and Space key to jump
